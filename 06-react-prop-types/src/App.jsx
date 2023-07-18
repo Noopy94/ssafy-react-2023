@@ -3,7 +3,7 @@ import './styles/App.css';
 import ScrollButton from './components/ScrollButton';
 import DescriptionList from './components/DescriptionList';
 
-const imageType = 'react';
+let imageType = 'react'; // 'react' | 'vite'
 
 const isShowReactImage = true;
 
@@ -27,7 +27,7 @@ const renderList = ({ isReverse = false } = {}) => {
   return data.map((message, index) => <li key={index}>{message}</li>);
 };
 
-const handleScrollMove = ({ currentTarget, target }) => {
+const handleScrollMove = ({ currentTarget, target } /* Event Object */) => {
   const { top } = currentTarget.getBoundingClientRect();
   const appElement = document.querySelector('.App');
 
@@ -58,6 +58,7 @@ function App() {
     <div className="App">
       <h1>React 컴포넌트 Props 검사</h1>
       <hr />
+      {/* 객체 전개 구문  */}
       <DescriptionList {...descriptionListProps} />
       <ScrollButton.Group onScroll={handleScrollMove}>
         <ScrollButton />

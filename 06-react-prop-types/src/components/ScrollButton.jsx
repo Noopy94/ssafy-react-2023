@@ -1,8 +1,9 @@
-import './ScrollButton.css';
+import PropTypes from 'prop-types';
+import '../styles/ScrollButton.css';
 
-function ScrollButton({ mode = 'down' }) {
+function ScrollButton({ mode = 'down', label = '스크롤 다운' }) {
   const isDown = mode === 'down';
-  const buttonLabel = `스크롤 ${isDown ? '다운' : '업'}`;
+  const buttonLabel = label ?? `스크롤 ${isDown ? '다운' : '업'}`;
 
   return (
     <button
@@ -31,12 +32,22 @@ function ScrollButton({ mode = 'down' }) {
   );
 }
 
-ScrollButton.Group = function ButtonGroup({ onScroll, children }) {
+ScrollButton.propTypes = {
+  mode: PropTypes.string,
+  label: PropTypes.string,
+};
+
+ScrollButton.Group = function ScrollButtonGroup({ onScroll, children }) {
   return (
     <div role="group" className="ScrollButtonGroup" onClick={onScroll}>
       {children}
     </div>
   );
+};
+
+ScrollButton.Group.propTypes = {
+  onScroll: PropTypes.func,
+  children: PropTypes.node, // React.ReactNode
 };
 
 export default ScrollButton;

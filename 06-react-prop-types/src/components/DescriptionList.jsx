@@ -1,5 +1,6 @@
-import '../styles/DescriptoinList.css';
+import { oneOf, arrayOf, string, bool, func, shape } from 'prop-types';
 import vitePath from '../assets/vite.svg';
+import '../styles/DescriptoinList.css';
 import reactPath from '/react.svg';
 
 function DescriptionList({
@@ -72,5 +73,19 @@ function DescriptionList({
     </dl>
   );
 }
+
+DescriptionList.propTypes = {
+  statusMessage: arrayOf(string).isRequired,
+  imageType: oneOf(['react', 'vite']).isRequired,
+  isShowReactImage: bool.isRequired,
+  renderList: func.isRequired,
+  reactLibrary: shape({
+    name: string,
+    author: string,
+    writtenIn: string,
+    type: string,
+    license: string,
+  }).isRequired,
+};
 
 export default DescriptionList;
